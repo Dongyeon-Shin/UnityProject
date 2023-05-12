@@ -28,10 +28,4 @@ public class _2023_05_11 : MonoBehaviour
         gameObject.name = "Player";
         rigidBody.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
