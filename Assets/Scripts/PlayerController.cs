@@ -14,9 +14,15 @@ public class PlayerController : MonoBehaviour
     [Range(0, 10)]
     private float jumpPower;
     [SerializeField]
-    [Range(0, 10)]
+    [Range(0, 30)]
     private float rotateSpeed;
+    [SerializeField]
+    Bullet bulletPrefab;
+    [SerializeField]
+    private Transform bulletPoint;
     private Vector3 firstPosition;
+    [SerializeField]
+    private float repeatTime;
     private void Awake()
     {
         if (rb == null)
@@ -31,16 +37,16 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         Move();
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawLine(firstPosition, transform.position);
+        Rotate();
     }
     private void Move()
     {
-        rb.AddForce(moveDir * moveSpeed);
-        print(moveDir);
+        //rb.AddForce(moveDir * moveSpeed);
+        //print(moveDir);
         //transform.position += moveSpeed * moveDir * Time.deltaTime;
-        // transform.Translate(moveSpeed * moveDir * Time.deltaTime);
+        //transform.Translate(moveSpeed * moveDir * Time.deltaTime);
         // x : 1m/s   deltatime = 1/s 단위시간 한프레임당 걸리는 시간
+        transform.Translate(Vector3.forward * moveDir.z * 0.01f);
     }
     private void Jump()
     {
@@ -58,5 +64,29 @@ public class PlayerController : MonoBehaviour
     public void Rotate()
     {
         transform.Rotate(Vector3.up,moveDir.x * rotateSpeed * Time.deltaTime);
+    }
+    private void OnFire(InputValue value)
+    {
+        Instantiate(bulletPrefab, bulletPoint.position, bulletPoint.rotation);
+    }
+    private Coroutine bulletRoutine;
+    IEnumerator BulletMakeRoutine()
+    {
+        while (true)
+        {
+            Instantiate(bulletPrefab, bulletPoint.position, bulletPoint.rotation);
+            yield return new WaitForSeconds(repeatTime);
+        }
+    }
+    private void OnRepeatFire(InputValue value)
+    {
+        if(value.isPressed)
+        {
+            bulletRoutine = StartCoroutine(BulletMakeRoutine());
+        }
+        else
+        {
+            StopCoroutine(bulletRoutine);
+        }
     }
 }

@@ -16,7 +16,6 @@ public class _2023_05_12 : MonoBehaviour
             rb = GetComponent<Rigidbody>();
         }
         isBall = gameObject.name == "PlayableBall";
-        
     }
     private void Update()
     {
