@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2767774382247462938}
   - component: {fileID: 2767774382247462932}
   m_Layer: 0
-  m_Name: Player
+  m_Name: Ball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,7 +30,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2767774382247462940}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 14.83, y: 6.77, z: -8}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -161,3 +161,6 @@ MonoBehaviour:
   moveSpeed: 5
   jumpPower: 5.4
   rotateSpeed: 5.4
+  bulletPrefab: {fileID: 0}
+  bulletPoint: {fileID: 0}
+  repeatTime: 0
