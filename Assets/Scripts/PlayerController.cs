@@ -23,12 +23,14 @@ public class PlayerController : MonoBehaviour
     private Vector3 firstPosition;
     [SerializeField]
     private float repeatTime;
+    private Animator animator;
     private void Awake()
     {
         if (rb == null)
         {
             rb = GetComponent<Rigidbody>();
         }
+        animator = GetComponent<Animator>();
     }
     private void Start()
     {
@@ -68,6 +70,7 @@ public class PlayerController : MonoBehaviour
     private void OnFire(InputValue value)
     {
         Instantiate(bulletPrefab, bulletPoint.position, bulletPoint.rotation);
+        animator.SetTrigger("Fire");
     }
     private Coroutine bulletRoutine;
     IEnumerator BulletMakeRoutine()
@@ -88,5 +91,10 @@ public class PlayerController : MonoBehaviour
         {
             StopCoroutine(bulletRoutine);
         }
+    }
+    public void ButtonFire()
+    {
+        Instantiate(bulletPrefab, bulletPoint.position, bulletPoint.rotation);
+        animator.SetTrigger("Fire");
     }
 }
