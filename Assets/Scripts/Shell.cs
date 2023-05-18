@@ -11,8 +11,8 @@ public class Shell : MonoBehaviour
     private ParticleSystem explosionEffect;
     private AudioSource shellExplosionSound;
     private GameObject shellRanderer;
-    //TODO: _2023_05_17을 Player 스크립트로
-    private _2023_05_17 firer;
+    //TODO: _2023_05_18_PlayerFire을 Player 스크립트로
+    private _2023_05_18_PlayerFire firer;
     private Coroutine despawnRoutine;
     private void Awake()
     {
@@ -44,8 +44,8 @@ public class Shell : MonoBehaviour
         rb.velocity = Vector3.zero;
         shellRanderer.SetActive(false);
     }
-    //TODO: _2023_05_17을 Player 스크립트로
-    public void GetFireer(_2023_05_17 fireer)
+    //TODO: _2023_05_18_PlayerFire을 Player 스크립트로
+    public void GetFireer(_2023_05_18_PlayerFire fireer)
     {
         this.firer = fireer;
     }
